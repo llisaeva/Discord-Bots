@@ -32,6 +32,7 @@ class Category:
             self.description = '*Select the category you belong to:*\n\n'
             for item in self.poll:
                 self.description = self.description + item.emoji + ' - ' + item.role.mention + '\n'
+            self.description = self.description + "\nType **!change help** if you can't decide."
         
         embed = discord.Embed(title='Change Identity', description=self.description)
 

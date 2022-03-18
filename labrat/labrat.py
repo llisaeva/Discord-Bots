@@ -1,3 +1,4 @@
+import os
 from random import Random
 import discord
 from discord.ext import commands
@@ -75,6 +76,18 @@ async def card(ctx):
     suit = [':clubs: - Club', ':diamonds: - Diamond', ':hearts: - Heart', ':spades: - Spade' ]
     random = Random()
     await ctx.send(rank[random.randrange(len(rank))] + ' ' + suit[random.randrange(len(suit))])
+
+
+@bot.command(pass_context=True)
+@commands.is_owner()
+async def boot(ctx, arg):
+    if arg == 'butler':
+        os.system("butler/compile.sh &")
+
+@boot.error
+async def boot_error(ctx, error):
+    if isinstance(error, commands.CheckFailure):
+        await ctx.send('You are not my maker')
 
 
 # ======================= Game Jam =========================
